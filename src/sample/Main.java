@@ -1,15 +1,15 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -26,8 +26,8 @@ public class Main extends Application {
         XYChart.Series mainChart = new XYChart.Series();
         mainChart.setName("My chart");
 
-        double x0 = 0;
-        double y0 = 3;
+        double x0 = 0.0;
+        double y0 = 3.0;
         double x = 5.5;
         double n = 0.1; //the size of the step
 
@@ -36,7 +36,7 @@ public class Main extends Application {
 
         ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
 
-        while (currentX != x + n) { //the euler method and the chart plotting
+        while (currentX <= x + n) { //the euler method and the chart plotting
             data.add(new XYChart.Data(currentX, currentY)); //adding new points for the plot
 
             currentY += n * func(currentX, currentY); //euler method calculation

@@ -26,6 +26,14 @@
         <NumberAxis side="LEFT" />
       </yAxis>
     </LineChart>
+    <LineChart id="LineChart" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <xAxis>
+        <CategoryAxis side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT" />
+      </yAxis>
+    </LineChart>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
