@@ -7,33 +7,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.*?>
 
 <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
   <children>
-    <LineChart id="LineChart" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <CategoryAxis prefWidth="591.0" side="BOTTOM" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis side="LEFT" />
-      </yAxis>
-    </LineChart>
-    <LineChart id="LineChart" prefHeight="541.0" prefWidth="652.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <CategoryAxis side="BOTTOM" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis side="LEFT" />
-      </yAxis>
-    </LineChart>
-    <LineChart id="LineChart" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <CategoryAxis side="BOTTOM" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis side="LEFT" />
-      </yAxis>
-    </LineChart>
+    <AnchorPane prefHeight="600.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <LineChart id="LineChart" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <xAxis>
+            <CategoryAxis side="BOTTOM" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis lowerBound="-100.0" scaleZ="0.0" side="LEFT" upperBound="100.0" />
+          </yAxis>
+        </LineChart>
+      </children>
+    </AnchorPane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
