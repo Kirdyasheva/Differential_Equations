@@ -29,7 +29,15 @@ public class Main extends Application {
         double x0 = 0;
         double y0 = 3;
         double x = 5.5;
-        double n = (x-x0)/0.01; //number of iterations
+        double n = 0.01; //the size of the step
+
+        double currentX = x0;
+        double currentY = y0;
+
+        while (currentX != x + n) { //the euler method and the chart plotting
+            currentY += n * func(currentX, currentY); //euler method calculation
+            currentX += n; //euler method calculation
+        }
 
         primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
