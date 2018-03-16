@@ -22,14 +22,14 @@ public class Main extends Application {
         NumberAxis yAxis = new NumberAxis(-10,1000,1);
 
         LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
-        chart.setTitle("Euler method of approximation");
-        XYChart.Series mainChart = new XYChart.Series();
-        mainChart.setName("xy^2 + 3xy");
+        chart.setTitle("xy^2 + 3xy");
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Euler method");
 
         double x0 = 0.0;
         double y0 = 3.0;
         double x = 5.5;
-        double n = 0.01; //the size of the step
+        double n = 0.001; //the size of the step
 
         double currentX = x0;
         double currentY = y0;
@@ -39,16 +39,16 @@ public class Main extends Application {
         while (currentX <= x + n) { //the euler method and the chart plotting
             //data.add(new XYChart.Data(currentX, currentY)); //adding new points for the plot
 
-            mainChart.getData().add(new XYChart.Data(currentX, currentY));
+            series1.getData().add(new XYChart.Data(currentX, currentY));
 
             currentY += n * func(currentX, currentY); //euler method calculation
             currentX += n; //euler method calculation
         }
 
-        //mainChart.setData(data);
+        //series1.setData(data);
 
         Scene scene = new Scene(chart, 600, 600);
-        chart.getData().add(mainChart);
+        chart.getData().add(series1);
 
         primaryStage.setScene(scene);
         primaryStage.show();
