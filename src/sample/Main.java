@@ -28,7 +28,7 @@ public class Main extends Application {
         double x0 = 0.0;
         double y0 = 3.0;
         double x = 5.5;
-        double n = 0.0; //the size of the step
+        double n = 0.001; //the size of the step
 
         double currentX = x0;
         double currentY = y0;
