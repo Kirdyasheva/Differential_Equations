@@ -126,7 +126,7 @@ public class Controller {
         maxErrors.getData().add(rungeKuttaMaxErrorSeries);
 
         calculate();
-        calculateErrors();
+        //calculateErrors();
     }
 
     public void calculateErrors(XYChart.Series<Number, Number> generatedSeries,
