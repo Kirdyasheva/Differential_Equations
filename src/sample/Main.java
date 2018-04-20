@@ -1,11 +1,15 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 
 public class Main extends Application {
@@ -16,6 +20,8 @@ public class Main extends Application {
 
         NumberAxis xAxis = new NumberAxis(0, 5, 1);
         NumberAxis yAxis = new NumberAxis(-10, 1000, 1);
+
+        TextField method = new TextField();
 
         LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
         chart.setTitle("xy^2 + 3xy");
@@ -116,4 +122,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
