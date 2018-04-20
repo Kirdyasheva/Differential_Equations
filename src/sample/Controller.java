@@ -141,7 +141,7 @@ public class Controller {
         series3.getData().clear();
         series4.getData().clear();
 
-        series1 = (Eulers.Eulers(x0, y0, X, N));
+        series1 = Eulers.Eulers(x0, y0, X, N);
         series2 = ImprovedEuler.Eulers(x0, y0, X, N);
         series3 = RungeKutta.rungeKutta(x0, y0, X, N);
         series4 = Analitical.analitical(x0, y0, X, N);
@@ -173,7 +173,7 @@ public class Controller {
     public void calculateMaxErrors() {
         double temp;
         double x0 = 0;
-        double X = 5;
+        double X = 5.5;
         double y0 = 0;
         int Nmin = Integer.parseInt(this.Nmin.getText());
         int Nmax = Integer.parseInt(this.Nmax.getText());

@@ -9,10 +9,12 @@ public class Analitical {
         return y;
     }
 
-    public static XYChart.Series analitical(double x0, double y0, double x, double n) {
+    public static XYChart.Series analitical(double x0, double y0, double x, double N) {
         double currentX = x0;
         double currentY = y0;
         XYChart.Series series = new XYChart.Series();
+
+        double n = (Math.abs(x - x0)) / N;
 
 
         while (currentX <= x + n) { //the euler method and the chart plotting

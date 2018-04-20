@@ -7,7 +7,7 @@ public class Eulers {
         double currentX = x0;
         double currentY = y0;
         XYChart.Series series = new XYChart.Series();
-        double n = (x - x0)/N;
+        double n = (Math.abs(x - x0)) / N;
 
         //ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
 
