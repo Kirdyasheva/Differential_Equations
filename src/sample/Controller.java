@@ -48,6 +48,12 @@ public class Controller {
         series3.setName("Analitical Solution");
         series4.setName("Runge-Kutta method");
         functions.setTitle("xy^2 + 3xy");
+        eulersErrorSeries.setName("Euler's Method");
+        eulersMaxErrorSeries.setName("Euler's Method");
+        improvedEulersErrorSeries.setName("Improved Euler's Method");
+        improvedEulersMaxErrorSeries.setName("Improved Euler's Method");
+        rungeKuttaErrorSeries.setName("Runge-Kutta Method");
+        rungeKuttaMaxErrorSeries.setName("Runge-Kutta Method");
     }
 
 
@@ -56,33 +62,40 @@ public class Controller {
             //checkNumbers(X, newValue, oldValue);
             //recalculate();
             X.setText(newValue);
+            calculate();
         });
         x0.textProperty().addListener((observable, oldValue, newValue) -> {
             //checkNumbers(x0, newValue, oldValue);
             //recalculate();
             x0.setText(newValue);
+            calculate();
         });
         y0.textProperty().addListener((observable, oldValue, newValue) -> {
             //checkNumbers(y0, newValue, oldValue);
             //recalculate();
             y0.setText(newValue);
+            calculate();
         });
         N.textProperty().addListener((observable, oldValue, newValue) -> {
             //checkNumbers(N, newValue, oldValue);
             //recalculate();
             N.setText(newValue);
+            calculate();
         });
     }
 
     private void addListenerForBox() {
         euler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series1, functions);
+            drawGraph(newValue, eulersErrorSeries, errors);
         });
         improvedEuler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series2, functions);
+            drawGraph(newValue, improvedEulersErrorSeries, errors);
         });
         rungeKutta.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series3, functions);
+            drawGraph(newValue, rungeKuttaErrorSeries, errors);
         });
         original.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series4, functions);
@@ -105,10 +118,20 @@ public class Controller {
         double X = Double.parseDouble(this.X.getText());
         double y0 = Double.parseDouble(this.y0.getText());
         int N = Integer.parseInt(this.N.getText());
+
+        series1.getData().clear();
+        series2.getData().clear();
+        series3.getData().clear();
+        series4.getData().clear();
+
         series1 = (Eulers.Eulers(x0, y0, X, N));
         series2 = ImprovedEuler.Eulers(x0, y0, X, N);
         series3 = RungeKutta.rungeKutta(x0, y0, X, N);
         series4 = Analitical.analitical(x0, y0, X, N);
+
+        calculateErrors(series1, eulersErrorSeries);
+        calculateErrors(series2, improvedEulersErrorSeries);
+        calculateErrors(series3, rungeKuttaErrorSeries);
 
     }
 
