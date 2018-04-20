@@ -2,10 +2,8 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -29,9 +27,6 @@ public class Controller {
     private LineChart<Number, Number> errors;
     @FXML
     private LineChart<Number, Number> maxErrors;
-
-    @FXML
-    private Label warning;
 
 
     public XYChart.Series<Number, Number> series1 = new XYChart.Series<>();
@@ -82,13 +77,15 @@ public class Controller {
     private void addListenerForBox() {
         euler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series1, functions);
-            calculate();
         });
         improvedEuler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series2, functions);
         });
         rungeKutta.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series3, functions);
+        });
+        original.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            drawGraph(newValue, series4, functions);
         });
 
     }
@@ -109,6 +106,9 @@ public class Controller {
         double y0 = Double.parseDouble(this.y0.getText());
         int N = Integer.parseInt(this.N.getText());
         series1 = (Eulers.Eulers(x0, y0, X, N));
+        series2 = ImprovedEuler.Eulers(x0, y0, X, N);
+        series3 = RungeKutta.rungeKutta(x0, y0, X, N);
+        series4 = Analitical.analitical(x0, y0, X, N);
 
     }
 
@@ -126,7 +126,7 @@ public class Controller {
         maxErrors.getData().add(rungeKuttaMaxErrorSeries);
 
         calculate();
-        //calculateErrors();
+        calculateMaxErrors();
     }
 
     public void calculateErrors(XYChart.Series<Number, Number> generatedSeries,
@@ -145,5 +145,32 @@ public class Controller {
         }
 
     }
+
+    public void calculateMaxErrors() {
+        double temp;
+        double x0 = 0;
+        double X = 5;
+        double y0 = 0;
+        int Nmin = Integer.parseInt(this.Nmin.getText());
+        int Nmax = Integer.parseInt(this.Nmax.getText());
+
+        eulersMaxErrorSeries.getData().clear();
+        improvedEulersMaxErrorSeries.getData().clear();
+        rungeKuttaMaxErrorSeries.getData().clear();
+
+        Function.recalculateConstant(x0, y0);
+        double originalValue;
+
+        for (int N = Nmin; N <= Nmax; N++) {
+            originalValue = Analitical.function(X);
+            temp = Math.abs(originalValue - (double) Eulers.Eulers(x0, X, y0, N).getData().get(N));
+            eulersMaxErrorSeries.getData().add(new XYChart.Data<>(N, temp));
+            temp = Math.abs(originalValue - (double) ImprovedEuler.Eulers(x0, X, y0, N).getData().get(N));
+            improvedEulersMaxErrorSeries.getData().add(new XYChart.Data<>(N, temp));
+            temp = Math.abs(originalValue - (double) RungeKutta.rungeKutta(x0, X, y0, N).getData().get(N));
+            rungeKuttaMaxErrorSeries.getData().add(new XYChart.Data<>(N, temp));
+        }
+    }
+
 
 }

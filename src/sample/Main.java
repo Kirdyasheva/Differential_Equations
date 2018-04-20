@@ -27,12 +27,12 @@ public class Main extends Application {
 
         LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
         chart.setTitle("xy^2 + 3xy");
-        XYChart.Series series1 = new XYChart.Series();
+        XYChart.Series euler = new XYChart.Series();
         XYChart.Series series2 = new XYChart.Series();
         XYChart.Series series3 = new XYChart.Series();
         XYChart.Series series4 = new XYChart.Series();
 
-        series1.setName("Euler method");
+        euler.setName("Euler method");
         series2.setName("Improved Euler method");
         series3.setName("Analitical Solution");
         series4.setName("Runge-Kutta method");
@@ -50,13 +50,13 @@ public class Main extends Application {
         while (currentX <= x + n) { //the euler method and the chart plotting
             //data.add(new XYChart.Data(currentX, currentY)); //adding new points for the plot
 
-            series1.getData().add(new XYChart.Data(currentX, currentY));
+            euler.getData().add(new XYChart.Data(currentX, currentY));
 
             currentY += n * func(currentX, currentY); //euler method calculation
             currentX += n; //euler method calculation
         }
 
-        //series1.setData(data);
+        //euler.setData(data);
 
         currentX = x0;
         currentY = y0;
@@ -101,7 +101,7 @@ public class Main extends Application {
         }
 
         Scene scene = new Scene(chart, 600, 600);
-        chart.getData().add(series1);
+        chart.getData().add(euler);
         chart.getData().add(series2);
         chart.getData().add(series3);
         chart.getData().add(series4);*/
