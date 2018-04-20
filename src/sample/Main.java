@@ -22,10 +22,12 @@ public class Main extends Application {
         XYChart.Series series1 = new XYChart.Series();
         XYChart.Series series2 = new XYChart.Series();
         XYChart.Series series3 = new XYChart.Series();
+        XYChart.Series series4 = new XYChart.Series();
 
         series1.setName("Euler method");
         series2.setName("Improved Euler method");
         series3.setName("Analitical Solution");
+        series4.setName("Runge-Kutta method");
 
         double x0 = 0.0;
         double y0 = 3.0;
@@ -54,7 +56,8 @@ public class Main extends Application {
         while (currentX <= x + n) {
             series2.getData().add(new XYChart.Data(currentX, currentY)); //adding data to the chart
 
-            currentY += 0.5 * n * (func(currentX, currentY) + func(currentX + n, currentY + n * func(currentX, currentY)));
+            //currentY += 0.5 * n * (func(currentX, currentY) + func(currentX + n, currentY + n * func(currentX, currentY)));
+            currentY += n * func(currentX + n * 0.5, currentY + n * 0.5 * func(currentX, currentY));
             currentX += n; //improved Euler method calculation
         }
 
@@ -68,10 +71,32 @@ public class Main extends Application {
             currentX += n; //analitical solution plotting
         }
 
+        currentX = x0;
+        currentY = y0;
+        double k1;
+        double k2;
+        double k3;
+        double k4;
+        //ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
+
+        while (currentX <= x + n) {
+            //data.add(new XYChart.Data(currentX, currentY)); //adding new points for the plot
+
+            series4.getData().add(new XYChart.Data(currentX, currentY));
+            k1 = func(currentX, currentY);
+            k2 = func(currentX + n * 0.5, currentY + n * k1 * 0.5);
+            k3 = func(currentX + n * 0.5, currentY + n * k2 * 0.5);
+            k4 = func(currentX + n, currentY + n * k3);
+
+            currentY += n / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
+            currentX += n;
+        }
+
         Scene scene = new Scene(chart, 600, 600);
         chart.getData().add(series1);
         chart.getData().add(series2);
         chart.getData().add(series3);
+        chart.getData().add(series4);
 
         primaryStage.setScene(scene);
         primaryStage.show();
