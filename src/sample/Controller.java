@@ -2,10 +2,19 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.CheckBox;
+import javafx.stage.Stage;
 
 
 public class Controller {
@@ -20,6 +29,23 @@ public class Controller {
     CheckBox improvedEuler;
     CheckBox rungeKutta;
     CheckBox original;
+
+    NumberAxis xAxis = new NumberAxis(0, 5, 1);
+    NumberAxis yAxis = new NumberAxis(-10, 1000, 1);
+
+    LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
+    XYChart.Series series1 = new XYChart.Series();
+    XYChart.Series series2 = new XYChart.Series();
+    XYChart.Series series3 = new XYChart.Series();
+    XYChart.Series series4 = new XYChart.Series();
+
+    public void setNamed() {
+        series1.setName("Euler method");
+        series2.setName("Improved Euler method");
+        series3.setName("Analitical Solution");
+        series4.setName("Runge-Kutta method");
+        chart.setTitle("xy^2 + 3xy");
+    }
 
     private void addListenersForText() {
         X.textProperty().addListener((observable, oldValue, newValue) -> {
