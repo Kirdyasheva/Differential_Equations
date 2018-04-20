@@ -42,6 +42,23 @@ public class Controller {
     private XYChart.Series<Number, Number> improvedEulersMaxErrorSeries = new XYChart.Series<>();
     private XYChart.Series<Number, Number> rungeKuttaMaxErrorSeries = new XYChart.Series<>();
 
+    public Controller() {
+    }
+
+    @FXML
+    public void initialize() {
+        addListenerForBox();
+        addListenersForText();
+        setNamed();
+
+        maxErrors.getData().add(eulersMaxErrorSeries);
+        maxErrors.getData().add(improvedEulersMaxErrorSeries);
+        maxErrors.getData().add(rungeKuttaMaxErrorSeries);
+
+        calculate();
+        calculateMaxErrors();
+    }
+
     public void setNamed() {
         series1.setName("Euler method");
         series2.setName("Improved Euler method");
@@ -135,22 +152,6 @@ public class Controller {
 
     }
 
-    public Controller() {
-    }
-
-    @FXML
-    public void initialize() {
-        addListenersForText();
-        addListenerForBox();
-        setNamed();
-
-        maxErrors.getData().add(eulersMaxErrorSeries);
-        maxErrors.getData().add(improvedEulersMaxErrorSeries);
-        maxErrors.getData().add(rungeKuttaMaxErrorSeries);
-
-        calculate();
-        calculateMaxErrors();
-    }
 
     public void calculateErrors(XYChart.Series<Number, Number> generatedSeries,
                                 XYChart.Series<Number, Number> errorSeries) {
