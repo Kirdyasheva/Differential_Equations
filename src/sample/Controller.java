@@ -132,6 +132,17 @@ public class Controller {
     public void calculateErrors(XYChart.Series<Number, Number> generatedSeries,
                                 XYChart.Series<Number, Number> errorSeries) {
         errorSeries.getData().clear();
+        int numberOfEements = series4.getData().size() > generatedSeries.getData().size() ?
+                generatedSeries.getData().size() : series4.getData().size();
+
+        for (int i = 0; i < numberOfEements; i++) {
+            // Calculate error of generated series
+            double temp = Math.abs((double) series4.getData().get(i).getYValue()
+                    - (double) generatedSeries.getData().get(i).getYValue());
+
+            // Add error to error series
+            errorSeries.getData().add(new XYChart.Data<>(series4.getData().get(i).getXValue(), temp));
+        }
 
     }
 
