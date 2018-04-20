@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.NewSample">
+  <children>
+    <LineChart id="LineChart" layoutX="93.0" layoutY="0.0">
+      <xAxis>
+        <CategoryAxis side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT" />
+      </yAxis>
+    </LineChart>
+    <CheckBox fx:id="euler" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" text="Euler" />
+    <CheckBox fx:id="improvedEuler" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" text="Improved Euler" />
+    <CheckBox fx:id="rungeKutta" layoutX="14.0" layoutY="105.0" mnemonicParsing="false" text="Runge-Kutta" />
+    <CheckBox fx:id="original" layoutX="14.0" layoutY="151.0" mnemonicParsing="false" text="Analitical" />
+    <TextField fx:id="x0" layoutX="13.0" layoutY="200.0" prefHeight="19.0" prefWidth="43.0" promptText="x0" text="0" />
+    <TextField fx:id="y0" layoutX="13.0" layoutY="240.0" prefHeight="19.0" prefWidth="43.0" text="3" />
+    <TextField fx:id="X" layoutX="13.0" layoutY="276.0" prefHeight="19.0" prefWidth="43.0" text="0" />
+    <TextField fx:id="N" layoutX="14.0" layoutY="308.0" prefHeight="19.0" prefWidth="43.0" text="5.5" />
+    <TextField id="N" fx:id="Nmax" layoutX="13.0" layoutY="335.0" prefHeight="19.0" prefWidth="43.0" text="5.5" />
+    <TextField id="N" fx:id="nMin" layoutX="13.0" layoutY="367.0" prefHeight="19.0" prefWidth="43.0" text="5.5" />
+  </children>
+</AnchorPane>

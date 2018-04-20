@@ -10,33 +10,49 @@ import javafx.scene.control.TextField;
 
 
 public class Controller {
-    TextField X;
-    TextField x0;
-    TextField N;
-    TextField y0;
-    TextField Nmax;
-    TextField Nmin;
+    public TextField X;
+    public TextField x0;
+    public TextField N;
+    public TextField y0;
+    public TextField Nmax;
+    public TextField Nmin;
 
-    CheckBox euler;
-    CheckBox improvedEuler;
-    CheckBox rungeKutta;
-    CheckBox original;
+    public CheckBox euler;
+    public CheckBox improvedEuler;
+    public CheckBox rungeKutta;
+    public CheckBox original;
 
-    NumberAxis xAxis = new NumberAxis(0, 5, 1);
-    NumberAxis yAxis = new NumberAxis(-10, 1000, 1);
 
-    LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
-    XYChart.Series series1 = new XYChart.Series();
-    XYChart.Series series2 = new XYChart.Series();
-    XYChart.Series series3 = new XYChart.Series();
-    XYChart.Series series4 = new XYChart.Series();
+    @FXML
+    private LineChart<Number, Number> functions;
+    @FXML
+    private LineChart<Number, Number> errors;
+    @FXML
+    private LineChart<Number, Number> maxErrors;
+
+    @FXML
+    private Label warning;
+
+
+    public XYChart.Series<Number, Number> series1 = new XYChart.Series<>();
+    public XYChart.Series<Number, Number> series2 = new XYChart.Series<>();
+    public XYChart.Series<Number, Number> series3 = new XYChart.Series<>();
+    public XYChart.Series<Number, Number> series4 = new XYChart.Series<>();
+
+    private XYChart.Series<Number, Number> eulersErrorSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> improvedEulersErrorSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> rungeKuttaErrorSeries = new XYChart.Series<>();
+
+    private XYChart.Series<Number, Number> eulersMaxErrorSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> improvedEulersMaxErrorSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> rungeKuttaMaxErrorSeries = new XYChart.Series<>();
 
     public void setNamed() {
         series1.setName("Euler method");
         series2.setName("Improved Euler method");
         series3.setName("Analitical Solution");
         series4.setName("Runge-Kutta method");
-        chart.setTitle("xy^2 + 3xy");
+        functions.setTitle("xy^2 + 3xy");
     }
 
 
@@ -63,18 +79,15 @@ public class Controller {
         });
     }
 
-    private void addListenerForBoxe() {
+    private void addListenerForBox() {
         euler.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            drawGraph(newValue, eulersSeries, functions);
-            drawGraph(newValue, eulersErrorSeries, errors);
+            drawGraph(newValue, series1, functions);
         });
         improvedEuler.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            drawGraph(newValue, improvedEulersSeries, functions);
-            drawGraph(newValue, improvedEulersErrorSeries, errors);
+            drawGraph(newValue, series2, functions);
         });
         rungeKutta.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            drawGraph(newValue, rungeKuttaSeries, functions);
-            drawGraph(newValue, rungeKuttaErrorSeries, errors);
+            drawGraph(newValue, series3, functions);
         });
 
     }
@@ -89,18 +102,21 @@ public class Controller {
         }
     }
 
-    private void calculate(){
+    private void calculate() {
         double x0 = Double.parseDouble(this.x0.getText());
         double X = Double.parseDouble(this.X.getText());
         double y0 = Double.parseDouble(this.y0.getText());
         int N = Integer.parseInt(this.N.getText());
-
+        series1 = (Eulers.Eulers(x0, y0, X, N));
 
     }
 
-    public Controller(){
+    public Controller() {
+    }
+
+    public void Initialize() {
         addListenersForText();
-        addListenerForBoxe();
+        addListenerForBox();
         setNamed();
     }
 

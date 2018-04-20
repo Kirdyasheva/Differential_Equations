@@ -2,6 +2,8 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -16,9 +18,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Chart");
+        //primaryStage.setTitle("Chart");
 
-        NumberAxis xAxis = new NumberAxis(0, 5, 1);
+        /*NumberAxis xAxis = new NumberAxis(0, 5, 1);
         NumberAxis yAxis = new NumberAxis(-10, 1000, 1);
 
         TextField method = new TextField();
@@ -102,9 +104,19 @@ public class Main extends Application {
         chart.getData().add(series1);
         chart.getData().add(series2);
         chart.getData().add(series3);
-        chart.getData().add(series4);
+        chart.getData().add(series4);*/
 
+        /*NumberAxis xAxis = new NumberAxis(0, 5, 1);
+        NumberAxis yAxis = new NumberAxis(-10, 1000, 1);
+        LineChart<Number, Number> chart = new LineChart<Number, Number>(xAxis, yAxis);
+        Scene scene = new Scene(chart, 600, 600);
         primaryStage.setScene(scene);
+        primaryStage.show();*/
+
+        Parent root = FXMLLoader.load(getClass().getResource("newSample.fxml"));
+        primaryStage.setTitle("Differential Equations - Numerical Methods");
+        primaryStage.setScene(new Scene(root, 900, 630));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }
