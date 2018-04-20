@@ -113,7 +113,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
-        Parent root = FXMLLoader.load(getClass().getResource("newSample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Differential Equations - Numerical Methods");
         primaryStage.setScene(new Scene(root, 900, 630));
         primaryStage.setResizable(false);

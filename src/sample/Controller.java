@@ -82,6 +82,7 @@ public class Controller {
     private void addListenerForBox() {
         euler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series1, functions);
+            calculate();
         });
         improvedEuler.selectedProperty().addListener((observable, oldValue, newValue) -> {
             drawGraph(newValue, series2, functions);
@@ -114,10 +115,24 @@ public class Controller {
     public Controller() {
     }
 
-    public void Initialize() {
+    @FXML
+    public void initialize() {
         addListenersForText();
         addListenerForBox();
         setNamed();
+
+        maxErrors.getData().add(eulersMaxErrorSeries);
+        maxErrors.getData().add(improvedEulersMaxErrorSeries);
+        maxErrors.getData().add(rungeKuttaMaxErrorSeries);
+
+        calculate();
+        calculateErrors();
+    }
+
+    public void calculateErrors(XYChart.Series<Number, Number> generatedSeries,
+                                XYChart.Series<Number, Number> errorSeries) {
+        errorSeries.getData().clear();
+
     }
 
 }
