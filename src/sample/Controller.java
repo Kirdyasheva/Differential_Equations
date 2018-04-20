@@ -7,14 +7,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.CheckBox;
-import javafx.stage.Stage;
 
 
 public class Controller {
@@ -46,6 +38,7 @@ public class Controller {
         series4.setName("Runge-Kutta method");
         chart.setTitle("xy^2 + 3xy");
     }
+
 
     private void addListenersForText() {
         X.textProperty().addListener((observable, oldValue, newValue) -> {
