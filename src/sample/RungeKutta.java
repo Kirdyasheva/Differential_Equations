@@ -3,7 +3,7 @@ package sample;
 import javafx.scene.chart.XYChart;
 
 public class RungeKutta {
-    public static XYChart.Series rungeKutta(double x0, double y0, double x, double n) {
+    public static XYChart.Series rungeKutta(double x0, double y0, double x, double N) {
         double currentX = x0;
         double currentY = y0;
         double k1;
@@ -11,6 +11,7 @@ public class RungeKutta {
         double k3;
         double k4;
         XYChart.Series series = new XYChart.Series();
+        double n = (x - x0)/N;
 
         while (currentX <= x + n) {
             series.getData().add(new XYChart.Data(currentX, currentY));
