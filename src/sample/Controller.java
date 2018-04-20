@@ -89,4 +89,19 @@ public class Controller {
         }
     }
 
+    private void calculate(){
+        double x0 = Double.parseDouble(this.x0.getText());
+        double X = Double.parseDouble(this.X.getText());
+        double y0 = Double.parseDouble(this.y0.getText());
+        int N = Integer.parseInt(this.N.getText());
+
+
+    }
+
+    public Controller(){
+        addListenersForText();
+        addListenerForBoxe();
+        setNamed();
+    }
+
 }
