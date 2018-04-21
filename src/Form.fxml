@@ -56,10 +56,10 @@
           <children>
             <LineChart fx:id="maxErrors" prefHeight="511.0" prefWidth="881.0" title="Maximum errors for different amount of steps">
               <xAxis>
-                <NumberAxis prefWidth="838.0" side="BOTTOM" />
+                <NumberAxis fx:id="maxErrorsXAxis" prefWidth="838.0" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="maxErrorsYAxis" side="LEFT" />
               </yAxis>
             </LineChart>
             <Label layoutX="934.0" layoutY="149.0" text="N max = ">

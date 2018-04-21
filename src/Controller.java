@@ -30,15 +30,18 @@ public class Controller {
 
     @FXML
     private NumberAxis functionsXAxis;
-
     @FXML
     private NumberAxis functionsYAxis;
 
     @FXML
     private NumberAxis errorsXAxis;
-
     @FXML
     private NumberAxis errorsYAxis;
+
+    @FXML
+    private NumberAxis maxErrorsXAxis;
+    @FXML
+    private NumberAxis maxErrorsYAxis;
 
     public XYChart.Series<Number, Number> series1 = new XYChart.Series<>();
     public XYChart.Series<Number, Number> series2 = new XYChart.Series<>();
@@ -60,7 +63,7 @@ public class Controller {
     public void initialize() {
         setNames();
 
-        // functions line chart
+        // functions chart
         functions.setAnimated(false);
 
         functionsXAxis.setAutoRanging(false);
@@ -69,11 +72,11 @@ public class Controller {
         functionsXAxis.setTickUnit(0.5);
 
         functionsYAxis.setAutoRanging(false);
-        functionsYAxis.setLowerBound(0);
+        functionsYAxis.setLowerBound(-1000);
         functionsYAxis.setUpperBound(1000);
         functionsYAxis.setTickUnit(100.0);
 
-        // errors line chart
+        // errors chart
         errors.setAnimated(false);
 
         errorsXAxis.setAutoRanging(false);
@@ -85,6 +88,19 @@ public class Controller {
         errorsYAxis.setLowerBound(0);
         errorsYAxis.setUpperBound(100);
         errorsYAxis.setTickUnit(10.0);
+
+        // max errors chart
+        maxErrors.setAnimated(false);
+
+        maxErrorsXAxis.setAutoRanging(false);
+        maxErrorsXAxis.setLowerBound(15);
+        maxErrorsXAxis.setUpperBound(100);
+        maxErrorsXAxis.setTickUnit(10);
+
+        maxErrorsYAxis.setAutoRanging(false);
+        maxErrorsYAxis.setLowerBound(0);
+        maxErrorsYAxis.setUpperBound(0.00000001);
+        maxErrorsYAxis.setTickUnit(0.000000001);
 
 
         maxErrors.getData().add(eulersMaxErrorSeries);
@@ -140,7 +156,6 @@ public class Controller {
 
     @FXML
     public void recalculateMaxErrors() {
-        calculate();
         calculateMaxErrors();
     }
 
@@ -194,9 +209,9 @@ public class Controller {
 
     public void calculateMaxErrors() {
         double temp;
-        double x0 = 0;
-        double X = 5.5;
-        double y0 = 3;
+        double x0 = Double.parseDouble(this.x0.getText());
+        double X = Double.parseDouble(this.X.getText());
+        double y0 = Double.parseDouble(this.y0.getText());
         int Nmin = Integer.parseInt(this.Nmin.getText());
         int Nmax = Integer.parseInt(this.Nmax.getText());
 
@@ -209,6 +224,7 @@ public class Controller {
 
         for (int N = Nmin; N <= Nmax; N++) {
             originalValue = Analytical.function(X);
+            System.out.println(((XYChart.Series<Number, Number>)Eulers.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
             temp = Math.abs(originalValue - ((XYChart.Series<Number, Number>)Eulers.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
             eulersMaxErrorSeries.getData().add(new XYChart.Data<>(N, temp));
             temp = Math.abs(originalValue - ((XYChart.Series<Number, Number>)ImprovedEuler.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
