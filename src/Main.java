@@ -1,21 +1,14 @@
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("Form.fxml"));
         //primaryStage.setTitle("Chart");
 
         /*NumberAxis xAxis = new NumberAxis(0, 5, 1);
@@ -111,7 +104,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Form.fxml"));
         primaryStage.setTitle("Differential Equations - Numerical Methods");
         primaryStage.setScene(new Scene(root, 1300, 600));
         primaryStage.setResizable(false);

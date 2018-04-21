@@ -2,6 +2,7 @@
 
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -40,10 +41,11 @@
             <TextField fx:id="y0" layoutX="926.0" layoutY="210.0" text="3" />
             <TextField fx:id="X" layoutX="926.0" layoutY="161.0" text="5.5" />
             <TextField fx:id="N" layoutX="926.0" layoutY="97.0" text="100" />
-            <CheckBox fx:id="euler" layoutX="36.0" layoutY="399.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="130.0" text="Euler method" onMouseClicked="#drawEuler"/>
-            <CheckBox fx:id="improvedEuler" layoutX="226.0" layoutY="407.0" mnemonicParsing="false" text="Improved Euler method" onMouseClicked="#drawImprovedEuler"/>
-            <CheckBox fx:id="rungeKutta" layoutX="466.0" layoutY="407.0" mnemonicParsing="false" text="Runge-Kutta method" onMouseClicked="#drawRungeKutta" />
-            <CheckBox fx:id="analytical" layoutX="677.0" layoutY="407.0" mnemonicParsing="false" text="Analytical Solution" onMouseClicked="#drawAnalytical" />
+            <CheckBox fx:id="euler" layoutX="36.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#drawEuler" prefHeight="37.0" prefWidth="130.0" text="Euler method" />
+            <CheckBox fx:id="improvedEuler" layoutX="226.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#drawImprovedEuler" text="Improved Euler method" />
+            <CheckBox fx:id="rungeKutta" layoutX="466.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#drawRungeKutta" text="Runge-Kutta method" />
+            <CheckBox fx:id="analytical" layoutX="677.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#drawAnalytical" text="Analytical Solution" />
+                  <Button fx:id="recalculateButton" layoutX="926.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#recalculate" text="Recalculate" />
           </children>
         </AnchorPane>
       </content>
@@ -80,6 +82,7 @@
                 <Font size="18.0" />
               </font>
             </TextField>
+                  <Button fx:id="recalculateMaxErrors" layoutX="994.0" layoutY="277.0" mnemonicParsing="false" onMouseClicked="#recalculateMaxErrors" text="Recalculate" />
           </children>
         </AnchorPane>
       </content>

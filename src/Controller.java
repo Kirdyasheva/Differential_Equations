@@ -1,4 +1,3 @@
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -59,9 +58,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        addListenerForBox();
-        addListenersForText();
-        setNamed();
+        setNames();
 
         // functions line chart
         functions.setAnimated(false);
@@ -69,11 +66,11 @@ public class Controller {
         functionsXAxis.setAutoRanging(false);
         functionsXAxis.setLowerBound(0);
         functionsXAxis.setUpperBound(5);
-        functionsXAxis.setTickUnit(10.0);
+        functionsXAxis.setTickUnit(0.5);
 
         functionsYAxis.setAutoRanging(false);
         functionsYAxis.setLowerBound(0);
-        functionsYAxis.setUpperBound(100);
+        functionsYAxis.setUpperBound(1000);
         functionsYAxis.setTickUnit(100.0);
 
         // errors line chart
@@ -81,13 +78,13 @@ public class Controller {
 
         errorsXAxis.setAutoRanging(false);
         errorsXAxis.setLowerBound(0);
-        errorsXAxis.setUpperBound(5);
-        errorsXAxis.setTickUnit(10.0);
+        errorsXAxis.setUpperBound(2.5);
+        errorsXAxis.setTickUnit(0.25);
 
         errorsYAxis.setAutoRanging(false);
         errorsYAxis.setLowerBound(0);
         errorsYAxis.setUpperBound(100);
-        errorsYAxis.setTickUnit(100.0);
+        errorsYAxis.setTickUnit(10.0);
 
 
         maxErrors.getData().add(eulersMaxErrorSeries);
@@ -98,7 +95,7 @@ public class Controller {
         calculateMaxErrors();
     }
 
-    public void setNamed() {
+    public void setNames() {
         series1.setName("Euler method");
         series2.setName("Improved Euler method");
         series3.setName("Runge-Kutta method");
@@ -135,51 +132,16 @@ public class Controller {
         drawGraph(analytical.isSelected(), series4, functions);
     }
 
-
-    private void addListenersForText() {
-//        X.textProperty().addListener((observable, oldValue, newValue) -> {
-//            //checkNumbers(X, newValue, oldValue);
-//            //recalculate();
-//            X.setText(newValue);
-//            calculate();
-//        });
-//        x0.textProperty().addListener((observable, oldValue, newValue) -> {
-//            //checkNumbers(x0, newValue, oldValue);
-//            //recalculate();
-//            x0.setText(newValue);
-//            calculate();
-//        });
-//        y0.textProperty().addListener((observable, oldValue, newValue) -> {
-//            //checkNumbers(y0, newValue, oldValue);
-//            //recalculate();
-//            y0.setText(newValue);
-//            calculate();
-//        });
-//        N.textProperty().addListener((observable, oldValue, newValue) -> {
-//            //checkNumbers(N, newValue, oldValue);
-//            //recalculate();
-//            N.setText(newValue);
-//            calculate();
-//        });
+    @FXML
+    public void recalculate() {
+        calculate();
+        calculateMaxErrors();
     }
 
-    private void addListenerForBox() {
-//        euler.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//            drawGraph(newValue, series1, functions);
-//            drawGraph(newValue, eulersErrorSeries, errors);
-//        });
-//        improvedEuler.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//            drawGraph(newValue, series2, functions);
-//            drawGraph(newValue, improvedEulersErrorSeries, errors);
-//        });
-//        rungeKutta.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//            drawGraph(newValue, series3, functions);
-//            drawGraph(newValue, rungeKuttaErrorSeries, errors);
-//        });
-//        original.selectedProperty().addListener((observable, oldValue, newValue) -> {
-//            drawGraph(newValue, series4, functions);
-//        });
-
+    @FXML
+    public void recalculateMaxErrors() {
+        calculate();
+        calculateMaxErrors();
     }
 
     private void drawGraph(Boolean checkBoxValue,
@@ -234,7 +196,7 @@ public class Controller {
         double temp;
         double x0 = 0;
         double X = 5.5;
-        double y0 = 0;
+        double y0 = 3;
         int Nmin = Integer.parseInt(this.Nmin.getText());
         int Nmax = Integer.parseInt(this.Nmax.getText());
 
