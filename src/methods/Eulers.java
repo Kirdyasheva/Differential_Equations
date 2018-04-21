@@ -7,13 +7,9 @@ public class Eulers {
         Double currentX = x0;
         Double currentY = y0;
         XYChart.Series series = new XYChart.Series();
-        Double n = (x - x0)/N;
-
-        //ObservableList<XYChart.Data> data = FXCollections.observableArrayList();
+        Double n = Math.abs(x - x0) / N;
 
         while (currentX <= x + n) { //the euler method and the chart plotting
-            //data.add(new XYChart.Data(currentX, currentY)); //adding new points for the plot
-
             series.getData().add(new XYChart.Data(currentX, currentY));
 
             currentY += n * Function.func(currentX, currentY); //euler method calculation

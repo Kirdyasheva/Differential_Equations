@@ -11,7 +11,7 @@ public class RungeKutta {
         double k3;
         double k4;
         XYChart.Series series = new XYChart.Series();
-        double n = (x - x0)/N;
+        double n = Math.abs(x - x0) / N;
 
         while (currentX <= x + n) {
             series.getData().add(new XYChart.Data(currentX, currentY));
@@ -23,7 +23,6 @@ public class RungeKutta {
             currentY += n / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
             currentX += n;
         }
-
         return series;
     }
 }

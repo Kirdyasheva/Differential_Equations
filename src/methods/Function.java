@@ -8,7 +8,7 @@ public class Function {
         return (x * y * y) + (3 * x * y);
     }
 
-    public static void recalculateConstant(double x, double y){
-        C = - (1.0 / 3) * Math.log(Math.abs((y + 3) / y)) - 1.0 / 2 * x * x;
+    public static void recalculateConstant(double x, double y) {
+        C = -(1.0 / 3) * Math.log(Math.abs((y + 3) / y)) - 1.0 / 2 * x * x;
     }
 }
