@@ -219,7 +219,7 @@ public class Controller {
         improvedEulersMaxErrorSeries.getData().clear();
         rungeKuttaMaxErrorSeries.getData().clear();
 
-        Function.recalculateConstant(x0, y0);
+        //Function.recalculateConstant(x0, y0);
         double originalValue;
 
         for (int N = Nmin; N <= Nmax; N++) {

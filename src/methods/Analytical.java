@@ -15,10 +15,10 @@ public class Analytical {
         XYChart.Series series = new XYChart.Series();
         double n = Math.abs(x - x0) / N;
 
-        while (currentX <= x + n) { //the analytical calculation and the chart plotting
+        while (currentX <= x) { //the analytical calculation and the chart plotting
             series.getData().add(new XYChart.Data(currentX, currentY));
 
-            currentY += function(currentX); // analytical calculation
+            currentY = function(currentX); // analytical calculation
             currentX += n; // analytical calculation
         }
         return series;
