@@ -219,12 +219,10 @@ public class Controller {
         improvedEulersMaxErrorSeries.getData().clear();
         rungeKuttaMaxErrorSeries.getData().clear();
 
-        //Function.recalculateConstant(x0, y0);
         double originalValue;
 
         for (int N = Nmin; N <= Nmax; N++) {
             originalValue = Analytical.function(X);
-            //System.out.println(((XYChart.Series<Number, Number>) Eulers.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
             temp = Math.abs(originalValue - ((XYChart.Series<Number, Number>) Eulers.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
             eulersMaxErrorSeries.getData().add(new XYChart.Data<>(N, temp));
             temp = Math.abs(originalValue - ((XYChart.Series<Number, Number>) ImprovedEuler.Eulers(x0, y0, X, N)).getData().get(N).getYValue().doubleValue());
