@@ -8,14 +8,22 @@ public class ImprovedEuler {
         double currentY = y0;
         XYChart.Series series = new XYChart.Series();
         double n = Math.abs(x - x0) / N;
+        series.getData().add(new XYChart.Data<>(currentX, currentY));
 
-        while (currentX <= x + n) { //the improved euler method and the chart plotting
+        double value;
+        double temp;
 
-            series.getData().add(new XYChart.Data(currentX, currentY));
-
-            currentY += n * Function.func(currentX + n * 0.5, currentY + n * 0.5 * Function.func(currentX, currentY));
+        while (currentX <= x) { //the improved euler method and the chart plotting
+            temp = Function.func(currentX,currentY);
+            value = n*Function.func(currentX+n/2, currentY+ n*temp/2);
             currentX += n;
+            currentY += value;
+
+            //currentY += n * Function.func(currentX + n * 0.5, currentY + n * 0.5 * Function.func(currentX, currentY));
+            //currentX += n;
+            series.getData().add(new XYChart.Data<>(currentX, currentY));
         }
+
         return series;
     }
 }

@@ -14,7 +14,7 @@ public class RungeKutta {
         double n = Math.abs(x - x0) / N;
 
         while (currentX <= x + n) {
-            series.getData().add(new XYChart.Data(currentX, currentY));
+            series.getData().add(new XYChart.Data<>(currentX, currentY));
             k1 = Function.func(currentX, currentY);
             k2 = Function.func(currentX + n * 0.5, currentY + n * k1 * 0.5);
             k3 = Function.func(currentX + n * 0.5, currentY + n * k2 * 0.5);

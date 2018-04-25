@@ -16,7 +16,7 @@ public class Analytical {
         double n = Math.abs(x - x0) / N;
 
         while (currentX <= x) { //the analytical calculation and the chart plotting
-            series.getData().add(new XYChart.Data(currentX, currentY));
+            series.getData().add(new XYChart.Data<>(currentX, currentY));
 
             currentY = function(currentX); // analytical calculation
             currentX += n; // analytical calculation

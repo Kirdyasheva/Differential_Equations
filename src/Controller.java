@@ -90,14 +90,14 @@ public class Controller {
         errorsYAxis.setTickUnit(10.0);
 
         // max errors chart
-        maxErrors.setAnimated(false);
+        maxErrors.setAnimated(true);
 
-        maxErrorsXAxis.setAutoRanging(false);
+        maxErrorsXAxis.setAutoRanging(true);
         maxErrorsXAxis.setLowerBound(15);
         maxErrorsXAxis.setUpperBound(100);
         maxErrorsXAxis.setTickUnit(10);
 
-        maxErrorsYAxis.setAutoRanging(false);
+        maxErrorsYAxis.setAutoRanging(true);
         maxErrorsYAxis.setLowerBound(0);
         maxErrorsYAxis.setUpperBound(0.00000001);
         maxErrorsYAxis.setTickUnit(0.000000001);

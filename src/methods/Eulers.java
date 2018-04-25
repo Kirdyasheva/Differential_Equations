@@ -8,12 +8,14 @@ public class Eulers {
         Double currentY = y0;
         XYChart.Series series = new XYChart.Series();
         Double n = Math.abs(x - x0) / N;
+        series.getData().add(new XYChart.Data<>(currentX, currentY));
 
-        while (currentX <= x + n) { //the euler method and the chart plotting
-            series.getData().add(new XYChart.Data(currentX, currentY));
+        while (currentX <= x) { //the euler method and the chart plotting
 
             currentY += n * Function.func(currentX, currentY); //euler method calculation
             currentX += n; //euler method calculation
+
+            series.getData().add(new XYChart.Data<>(currentX, currentY));
         }
         return series;
     }
